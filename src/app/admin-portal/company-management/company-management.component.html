@@ -1,0 +1,34 @@
+<div class="container">
+  <table class="table table-striped">
+    <thead>
+      <th>#</th>
+      <th>Company Name</th>
+      <th>Description</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let company of companyList; let rowIndex = index">
+        <td>{{ rowIndex + 1 }}</td>
+        <td>{{ company.companyName }}</td>
+        <td>{{ company.companyDescription }}</td>
+        <td>
+          <button
+            class="btn btn-warning"
+            [routerLink]="['/admin-portal/edit-company', company._id]"
+          >
+            Edit
+          </button>
+        </td>
+        <td>
+          <button class="btn btn-danger" (click)="deleteCompany(company._id)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <button class="btn btn-primary" routerLink="/admin-portal/add-company">
+    Add Company
+  </button>
+</div>

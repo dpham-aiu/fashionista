@@ -1,0 +1,35 @@
+<Br />
+<div class="container">
+  <button class="btn btn-primary" routerLink="/admin-portal/add-user">
+    Add User
+  </button>
+  <table class="table table-striped">
+    <thead>
+      <th>#</th>
+      <th>Username</th>
+      <th>Email</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of userList; let rowIndex = index">
+        <td>{{ rowIndex + 1 }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.email }}</td>
+        <td>
+          <button
+            class="btn btn-warning"
+            [routerLink]="['/admin-portal/edit-user', user._id]"
+          >
+            Edit
+          </button>
+        </td>
+        <td>
+          <button class="btn btn-danger" (click)="deleteUser(user._id)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

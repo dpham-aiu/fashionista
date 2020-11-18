@@ -1,0 +1,108 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-5">
+      <h1 class="page-title">Adding Company</h1>
+      <form [formGroup]="updateProductForm" (ngSubmit)="updateProduct()">
+        <div class="form-group">
+          <div *ngIf="notify" class="alert alert-success">
+            {{ notify }}
+          </div>
+          <div *ngIf="errors.length > 0" class="alert alert-danger">
+            <p *ngFor="let error of errors">
+              {{ error }}
+            </p>
+          </div>
+          <label for="productName">Product Name:</label>
+          <input
+            type="productName"
+            class="form-control"
+            formControlName="productName"
+          />
+        </div>
+        <div *ngIf="isValidInput('productName')" class="alert alert-danger">
+          <div
+            *ngIf="updateProductForm.controls['productName'].errors.required"
+          >
+            Product Name is required.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="productDescription">Product Description: </label>
+          <textarea
+            type="productDescription"
+            class="form-control"
+            formControlName="productDescription"
+          ></textarea>
+        </div>
+        <div
+          *ngIf="isValidInput('productDescription')"
+          class="alert alert-danger"
+        >
+          <div
+            *ngIf="
+              updateProductForm.controls['productDescription'].errors.required
+            "
+          >
+            Product Description is required.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="price">Price: </label>
+          <input type="price" class="form-control" formControlName="price" />
+        </div>
+        <div *ngIf="isValidInput('price')" class="alert alert-danger">
+          <div *ngIf="updateProductForm.controls['price'].errors.required">
+            Price is required.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="imageURL">Image URL: </label>
+          <input
+            type="imageURL"
+            class="form-control"
+            formControlName="imageURL"
+          />
+        </div>
+        <img
+          class="img-fluid"
+          [src]="updateProductForm.get('imageURL').value"
+        />
+        <div class="form-group">
+          <label for="quantity">Quantity: </label>
+          <input
+            type="quantity"
+            class="form-control"
+            formControlName="quantity"
+          />
+        </div>
+        <div *ngIf="isValidInput('quantity')" class="alert alert-danger">
+          <div *ngIf="updateProductForm.controls['quantity'].errors.required">
+            Quantity is required.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="company">Brand: </label>
+          <select
+            class="form-control"
+            formControlName="company"
+            [(ngModel)]="selectedCompany"
+          >
+            <option value="" disable selected>Select a category.</option>
+            <option *ngFor="let company of companyList" [value]="company._id">
+              {{ company.companyName }}
+            </option>
+          </select>
+        </div>
+        <button
+          [disabled]="!updateProductForm.valid"
+          type="submit"
+          class="btn btn-warning"
+        >
+          Update Product
+        </button>
+      </form>
+      <hr />
+    </div>
+  </div>
+</div>

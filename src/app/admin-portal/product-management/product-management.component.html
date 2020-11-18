@@ -1,0 +1,43 @@
+<Br />
+<div class="container">
+  <button class="btn btn-primary" routerLink="/admin-portal/add-product">
+    Add Product
+  </button>
+  <table class="table table-striped">
+    <thead>
+      <th>#</th>
+      <th>Product Name</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Image</th>
+      <th>Company</th>
+      <th>Quantity</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of productList; let rowIndex = index">
+        <td>{{ rowIndex + 1 }}</td>
+        <td>{{ product.productName }}</td>
+        <td>{{ product.productDescription }}</td>
+        <td>${{ product.price }}</td>
+        <td><img class="img-fluid" src="{{ product.imageURL }}" /></td>
+        <td>{{ product.companyName }}</td>
+        <td>{{ product.quantity }}</td>
+        <td>
+          <button
+            class="btn btn-warning"
+            [routerLink]="['/admin-portal/edit-product', product._id]"
+          >
+            Edit
+          </button>
+        </td>
+        <td>
+          <button class="btn btn-danger" (click)="deleteProduct(product._id)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

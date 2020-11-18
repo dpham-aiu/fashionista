@@ -1,0 +1,86 @@
+1. cloned project containing authentication example from lecturer.
+
+2. added admin model, controller, and route to backend folder where express rest api is.
+    -tested route using postman.
+
+3. adding admin login page to frontend angular application.
+    -add admingLogin to auth.service.js
+    -add component admin login into auth folder
+    -changed auth guard to also check admin component path.
+
+4. Fixed routing path for admin login page.
+    -routes to admin-portal now.
+    -created admin-portal component to be the parent of the admin side UI
+
+5. Created management components for Company, Product, and User
+    -user-management component
+        -handles user CRUD operations
+    -Company
+        -handles company CRUD operations
+    -product-management
+        -handles product CRUD operations
+
+6. Working on Company CRUD
+    -created model, controller and route in backend application
+    -created model in angular app.
+        -company.ts
+
+7. created admin-portal.service
+    -created http client requests for company
+
+8. created add-company, and edit-company components
+    -added form for add company for admin to add company
+        -created logic to send back a company object to mongodb
+    -edit company has a form that is populated with data about the selected company.
+        -admin can change and save their changes to mongodb
+
+9.  Created product controller, model, and route in backend
+    -tested via PostMan
+
+10. created add-product, and edit-product components
+    -added form for add product for admin to add company
+        -created logic to send back a product object to mongodb
+    -edit product has a form that is populated with data about the selected product.
+        -admin can change and save their changes to mongodb
+
+11.  Created new user quests and routes in backend
+    -tested via PostMan
+
+12. created add-user, and edit-user components
+    -added form for add user for admin to add user
+        -created logic to send back a user object to mongodb
+    -edit user has a form that is populated with data about the selected product.
+        -admin can change and save their changes to mongodb
+
+13. created user-portal
+
+14. created shop component
+    -add logic to pull product and company to this component
+    -created profile cards to display products from W3
+    -displayed products in sets of three.
+
+15. Added a sort by brand drop down list
+    -products are linked via company _id.
+    -sort works now and user can sort by company.
+
+16. Created cart component.
+    -used a checkout example frame to design cart page.
+    -cart function takes in id from shop page to add product to cart.
+    -added remove functionality.
+    -saves cart in localStorage.
+    -created item.ts model
+
+17. created a div that shows purchase summary in cart component.
+
+18. created item model, controller, and route in backend.
+    -created purchases.ts model in frontend.
+    -purchases consists of many items.
+    -used to save user purchase and their payment details into mongodb
+
+19. Testing every functionality.
+
+20. created validation for checkout page.
+
+21. Styling all pages.
+
+22. removed profile component.

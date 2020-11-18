@@ -1,0 +1,334 @@
+<br />
+
+<div class="row" *ngIf="!orderComplete">
+  <div class="col-md-8 col-lg-8 col-sm-12">
+    <div class="container">
+      <form
+        name="form"
+        #f="ngForm"
+        (ngSubmit)="f.form.valid && checkOut()"
+        novalidate
+      >
+        <div class="row">
+          <div class="col-50">
+            <h3>Billing Address</h3>
+            <label for="fullName"><i class="fa fa-user"></i> Full Name</label>
+            <input
+              class="form-control"
+              [(ngModel)]="paymentForm.fullName"
+              #fullName="ngModel"
+              type="text"
+              id="fullName"
+              name="fullName"
+              placeholder="John M. Doe"
+              [ngClass]="{ 'is-invalid': f.submitted && fullName.invalid }"
+              required
+            />
+            <div
+              *ngIf="f.submitted && fullName.invalid"
+              class="invalid-feedback"
+            >
+              <div *ngIf="fullName.errors.required">Full name is required</div>
+            </div>
+            <label for="email"><i class="fa fa-envelope"></i> Email</label>
+            <input
+              class="form-control"
+              [(ngModel)]="paymentForm.email"
+              #email="ngModel"
+              type="text"
+              id="email"
+              name="email"
+              placeholder="john@example.com"
+              [ngClass]="{ 'is-invalid': f.submitted && email.invalid }"
+              required
+            />
+            <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
+              <div *ngIf="email.errors.required">Email is required</div>
+            </div>
+            <label for="adr"
+              ><i class="fa fa-address-card-o"></i> Address</label
+            >
+            <input
+              class="form-control"
+              [(ngModel)]="paymentForm.address"
+              #address="ngModel"
+              type="text"
+              id="adr"
+              name="address"
+              placeholder="542 W. 15th Street"
+              [ngClass]="{ 'is-invalid': f.submitted && address.invalid }"
+              required
+            />
+            <div
+              *ngIf="f.submitted && address.invalid"
+              class="invalid-feedback"
+            >
+              <div *ngIf="address.errors.required">Address is required</div>
+            </div>
+            <label for="city"><i class="fa fa-institution"></i> City</label>
+            <input
+              class="form-control"
+              [(ngModel)]="paymentForm.city"
+              #city="ngModel"
+              type="text"
+              type="text"
+              id="city"
+              name="city"
+              placeholder="New York"
+              [ngClass]="{ 'is-invalid': f.submitted && city.invalid }"
+              required
+            />
+            <div *ngIf="f.submitted && city.invalid" class="invalid-feedback">
+              <div *ngIf="city.errors.required">City name is required</div>
+            </div>
+            <div class="row">
+              <div class="col-50">
+                <label for="state">State</label>
+                <input
+                  class="form-control"
+                  [(ngModel)]="paymentForm.state"
+                  #state="ngModel"
+                  type="text"
+                  id="state"
+                  name="state"
+                  placeholder="NY"
+                  [ngClass]="{ 'is-invalid': f.submitted && state.invalid }"
+                  required
+                />
+                <div
+                  *ngIf="f.submitted && state.invalid"
+                  class="invalid-feedback"
+                >
+                  <div *ngIf="state.errors.required">
+                    State abbreviation is required
+                  </div>
+                </div>
+              </div>
+              <div class="col-50">
+                <label for="zip">Zip</label>
+                <input
+                  class="form-control"
+                  [(ngModel)]="paymentForm.zip"
+                  #zip="ngModel"
+                  type="text"
+                  id="zip"
+                  name="zip"
+                  placeholder="10001"
+                  [ngClass]="{ 'is-invalid': f.submitted && zip.invalid }"
+                  required
+                />
+                <div
+                  *ngIf="f.submitted && zip.invalid"
+                  class="invalid-feedback"
+                >
+                  <div *ngIf="zip.errors.required">Zip code is required</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-50">
+            <h3>Payment</h3>
+            <label for="fname">Accepted Cards</label>
+            <div class="icon-container">
+              <i class="fa fa-cc-visa" style="color: navy"></i>
+              <i class="fa fa-cc-amex" style="color: blue"></i>
+              <i class="fa fa-cc-mastercard" style="color: red"></i>
+              <i class="fa fa-cc-discover" style="color: orange"></i>
+            </div>
+            <label for="cname">Name on Card</label>
+            <input
+              class="form-control"
+              [(ngModel)]="paymentForm.cardname"
+              #cardname="ngModel"
+              type="text"
+              id="cname"
+              name="cardname"
+              placeholder="John More Doe"
+              [ngClass]="{ 'is-invalid': f.submitted && cardname.invalid }"
+              required
+            />
+            <div
+              *ngIf="f.submitted && cardname.invalid"
+              class="invalid-feedback"
+            >
+              <div *ngIf="cardname.errors.required">
+                Name on card is required
+              </div>
+            </div>
+            <label for="ccnum">Credit card number</label>
+            <input
+              class="form-control"
+              [(ngModel)]="paymentForm.cardnumber"
+              #cardnumber="ngModel"
+              type="text"
+              id="ccnum"
+              name="cardnumber"
+              placeholder="1111-2222-3333-4444"
+              [ngClass]="{ 'is-invalid': f.submitted && cardnumber.invalid }"
+              required
+            />
+            <div
+              *ngIf="f.submitted && cardnumber.invalid"
+              class="invalid-feedback"
+            >
+              <div *ngIf="cardnumber.errors.required">
+                Card number is required.
+              </div>
+            </div>
+            <label for="expmonth">Exp Month</label>
+            <input
+              class="form-control"
+              [(ngModel)]="paymentForm.expmonth"
+              #expmonth="ngModel"
+              type="text"
+              id="expmonth"
+              name="expmonth"
+              placeholder="September"
+              [ngClass]="{ 'is-invalid': f.submitted && expmonth.invalid }"
+              required
+            />
+            <div
+              *ngIf="f.submitted && expmonth.invalid"
+              class="invalid-feedback"
+            >
+              <div *ngIf="expmonth.errors.required">
+                Expiration month is required.
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-50">
+                <label for="expyear">Exp Year</label>
+                <input
+                  class="form-control"
+                  [(ngModel)]="paymentForm.expyear"
+                  #expyear="ngModel"
+                  type="text"
+                  id="expyear"
+                  name="expyear"
+                  placeholder="2018"
+                  [ngClass]="{ 'is-invalid': f.submitted && expyear.invalid }"
+                  required
+                />
+                <div
+                  *ngIf="f.submitted && expyear.invalid"
+                  class="invalid-feedback"
+                >
+                  <div *ngIf="expyear.errors.required">
+                    Expiration year is required.
+                  </div>
+                </div>
+              </div>
+              <div class="col-50">
+                <label for="cvv">CVV</label>
+                <input
+                  class="form-control"
+                  [(ngModel)]="paymentForm.cvv"
+                  #cvv="ngModel"
+                  type="text"
+                  id="cvv"
+                  name="cvv"
+                  placeholder="352"
+                  [ngClass]="{ 'is-invalid': f.submitted && cvv.invalid }"
+                  required
+                />
+                <div
+                  *ngIf="f.submitted && cvv.invalid"
+                  class="invalid-feedback"
+                >
+                  <div *ngIf="cvv.errors.required">CVV is required.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <input
+          type="submit"
+          value="Continue to checkout"
+          class="btn btn-primary"
+        />
+      </form>
+    </div>
+  </div>
+
+  <div class="col-md-4 col-lg-4 col-sm-12">
+    <div class="container">
+      <h4>
+        Cart
+        <span class="price" style="color: black">
+          <i class="fa fa-shopping-cart"></i>
+          <b>{{ totalQuantity }}</b>
+        </span>
+      </h4>
+      <div *ngFor="let item of items">
+        <div class="row">
+          <div class="col-md-2 col-lg-2 col-sm-3">
+            <span class="quantity">x{{ item.quantity }}</span>
+          </div>
+          <div class="col-md-8 col-lg-8 col-sm-6">
+            <a>{{ item.productName }}</a>
+          </div>
+          <div class="col-md-2 col-lg-2 col-sm-3">
+            <span>
+              <a (click)="remove(item.productId)">&#10060;</a>
+            </span>
+            <span class="price">${{ item.price }}</span>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <p>
+        Total
+        <span class="price" style="color: black"
+          ><b>${{ total }}</b></span
+        >
+      </p>
+    </div>
+    <br />
+    <a
+      class="btn btn-danger"
+      routerLink="/user-portal/shop"
+      [routerLinkActive]="['is-active']"
+      >Back to Shop</a
+    >
+  </div>
+</div>
+
+<br />
+<div container *ngIf="orderComplete">
+  <h2>
+    {{ paymentForm.fullName }}, thank you for supporting us during these hard
+    times!
+  </h2>
+  <hr />
+  <div class="row">
+    <div class="col-md-8 col-lg-8 col-sm-12">
+      <h3>Order Summary:</h3>
+      <table class="table">
+        <thead>
+          <th>Product Name:</th>
+          <th>Price:</th>
+          <th>Quantity:</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of items">
+            <td>{{ item.productName }}</td>
+            <td>{{ item.price }}</td>
+            <td>{{ item.quantity }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>Total cost: {{ total }}</p>
+    </div>
+    <div class="col-md-4 col-lg-4 col-sm-12">
+      <h3>Delivery Info:</h3>
+      <p>Name : {{ paymentForm.fullName }}</p>
+      <p>Email: {{ paymentForm.email }}</p>
+      <p>Address : {{ paymentForm.address }}</p>
+      <p>
+        {{ paymentForm.city }}, {{ paymentForm.state }},
+        {{ paymentForm.zip }}
+      </p>
+    </div>
+  </div>
+</div>

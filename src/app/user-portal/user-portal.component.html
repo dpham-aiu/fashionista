@@ -1,0 +1,31 @@
+<br />
+<div
+  class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light bg-img"
+>
+  <div class="col-md-5 p-lg-5 mx-auto my-5">
+    <h1 class="display-4 font-weight-normal">
+      Shopping has never been this easy.
+    </h1>
+    <p class="lead font-weight-normal">
+      Please browse our products from various brands. We come at you with the
+      best designs and fashion!
+    </p>
+    <a
+      class="btn btn-primary"
+      routerLink="/user-portal/shop"
+      [routerLinkActive]="['is-active']"
+      >SHOP</a
+    >
+    |
+    <a
+      class="btn btn-warning"
+      routerLink="/user-portal/cart"
+      [routerLinkActive]="['is-active']"
+      >CART</a
+    >
+  </div>
+</div>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>

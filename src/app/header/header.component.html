@@ -1,0 +1,84 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <a routerLink="/" class="navbar-brand" routerLinkActive="active">Vortix</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarsExample04"
+    aria-controls="navbarsExample04"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarsExample04">
+    <ul class="navbar-nav mr-auto">
+      <ng-container *ngIf="!auth.isAuthenticated()">
+        <li class="nav-item">
+          <a
+            routerLink="/auth/login"
+            class="nav-link"
+            routerLinkActive="active"
+          >
+            Login
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            routerLink="/auth/register"
+            class="nav-link"
+            [routerLinkActive]="['is-active']"
+          >
+            Register
+          </a>
+        </li>
+      </ng-container>
+      <ng-container *ngIf="auth.isAuthenticated()">
+        <ng-container *ngIf="auth.isAdminAuth()">
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              routerLink="/admin-portal"
+              [routerLinkActive]="['is-active']"
+            >
+              Admin Portal
+            </a>
+          </li>
+        </ng-container>
+        <ng-container *ngIf="!auth.isAdminAuth()">
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              routerLink="/user-portal/shop"
+              [routerLinkActive]="['is-active']"
+            >
+              Shop
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              routerLink="/user-portal/cart"
+              [routerLinkActive]="['is-active']"
+            >
+              Cart
+            </a>
+          </li>
+        </ng-container>
+      </ng-container>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <ng-container *ngIf="auth.isAuthenticated()">
+        <li class="nav-item">
+          <a class="nav-link">
+            {{ auth.getUsername() }}
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="logout()"> Logout </a>
+        </li>
+      </ng-container>
+    </ul>
+  </div>
+</nav>
